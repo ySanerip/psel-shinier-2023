@@ -1,5 +1,3 @@
-# psel-shinier-2023
-
 ### Instrunções do Desafio:
 
 1.  Faça o download do arquivo BancoTeste.zip e extraia os arquivos em uma pasta no seu computador.   
@@ -19,6 +17,7 @@
 ### Com base na descrição do desafio, eu dividiria as 30 horas de trabalho da seguinte forma:
 
 
+
 1. Organização e compreensão do desafio (30 min):
 
 - Criar repositório no GitHub;
@@ -28,18 +27,32 @@
 2.  Instalação e configuração do ambiente (1h30 min):
     
 
--   Baixar e descompactar o arquivo BancoTeste.zip;
+-  Baixar e descompactar o arquivo BancoTeste.zip;
     
 -   Instalar um SGBD (Sistema Gerenciador de Banco de Dados) de preferência;
+
+	-	O software gerenciador de banco de dados escolhido para análise do mesmo foi, por sua simplicidade e facilidade de uso, o FlameRobin. Sua instalação foi feita a partir do seguinte comando:
+	
+			sudo apt-get install flamerobin;	
     
 -   Importar as tabelas do arquivo BancoTeste.fbk;
-    
+
+	- Para que fosse possível importar os dados da tabela, primeiro foi necessário criar um arquivo 'BancoTeste.fdb' a partir do arquivo baixado. Para tal, foi necessário garantir permissões de leitura e escrita para a pasta em que o arquivo 'BancoTeste.fbk' - uma vez que durante o processo de criação do arquivo .fdb me deparei com mensagens de erros. Tais permissões foram condedidas atraáves do comando:
+	
+			sudo chmod 777 caminho/do/arquivo;
+		Uma vez sanados os erros de permissão, pude seguir com a criação do banco de dados, extensão fdb atráves do comando:
+
+			
+			gbak -c -user SYSDBA -password <senha> /caminho/do/arquivo.fbk localhost:/caminho/do/arquivo.fdb
+
+
+	
 -   Verificar se as tabelas foram importadas corretamente;
     
 -   Identificar e instalar as ferramentas necessárias para desenvolver o script em PHP.
     
 
-2.  Análise das tabelas e extração das informações pertinentes (8 horas):
+3.  Análise das tabelas e extração das informações pertinentes (8 horas):
     
 
 -   Analisar a estrutura do banco de dados;
@@ -51,7 +64,7 @@
 -   Verificar se as consultas SQL retornam os resultados esperados.
     
 
-3.  Organização das informações na planilha modelo (5 horas):
+4.  Organização das informações na planilha modelo (5 horas):
     
 
 -   Abrir a planilha modelo;
@@ -63,7 +76,7 @@
 -   Verificar se a organização das informações está de acordo com o formato da planilha modelo.
     
 
-4.  Conversão da planilha para CSV (2 horas):
+5.  Conversão da planilha para CSV (2 horas):
     
 
 -   Salvar a planilha modelo como arquivo CSV;
@@ -71,7 +84,7 @@
 -   Verificar se o arquivo CSV foi gerado corretamente.
     
 
-5.  Desenvolvimento do script em PHP (10 horas):
+6.  Desenvolvimento do script em PHP (10 horas):
     
 
 -   Estabelecer a conexão com o banco de dados;
@@ -87,7 +100,7 @@
 -   Testar o script em diferentes cenários e verificar se está funcionando corretamente.
     
 
-6.  Testes e documentação (3 horas):
+7.  Testes e documentação (3 horas):
     
 
 -   Testar o script em diferentes cenários para verificar se está funcionando corretamente;
@@ -97,6 +110,3 @@
 -   Escrever um guia de instalação e utilização do script;
     
 -   Preparar uma apresentação sobre o desenvolvimento do script e os resultados obtidos.
-
-
-
