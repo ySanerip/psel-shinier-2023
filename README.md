@@ -80,6 +80,15 @@
     
 
 -   Salvar a planilha modelo como arquivo CSV;
+		
+	- Comecei por preparar o ambiente PHP, e converter as informaçẽos da planilha de forma direta. Para isso, foram utilizados os comandos:
+				
+		sudo apt install apache2 -y;
+		sudo apt install php libapache2-mod-php
+		sudo systemctl status apache2
+		sudo apachectl configtest
+		
+	Para confirmação do ambiente virtual, acessar `http://<IP do seu servidor>`, que apresentará uma página padrão para o Apache.
     
 -   Verificar se o arquivo CSV foi gerado corretamente.
     
