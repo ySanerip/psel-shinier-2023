@@ -14,7 +14,7 @@ ini_set('display_errors', '1');
 $host = 'localhost';
 $database = '/home/platonicidiot/Documents/Projects/psel-shinier-2023/BaseTeste.fdb';
 $username = 'SYSDBA';
-$password = 'p1r3n@521';
+$password = 'masterkey';
 
 try {
     $conexao = new PDO("firebird:dbname={$database};host={$host}", $username, $password);
@@ -23,20 +23,16 @@ try {
 }
 
 try {
-    $query = $conexao->prepare("SELECT
- EMD101.NOME,
- TPAGAR.DOCUMENTO,
- CONTAS_PAGAR_BAIXA.ID_FORMA_PAGAMENTO,
- TPAGAR.VALOR_PARCELA,
- CONTAS_PAGAR_BAIXA.VALOR_PAGO,
- TPAGAR.EMISSAO,
- TPAGAR.VENCTO,
- TPAGAR.DATA_PAGTO,
- CONTAS_PAGAR_BAIXA.DATA_BAIXA
- FROM TPAGAR
- LEFT JOIN EMD101 ON TPAGAR.CNPJ_CPF = EMD101.CGC_CPF
- LEFT JOIN CONTAS_PAGAR_BAIXA ON TPAGAR.DOCUMENTO = CONTAS_PAGAR_BAIXA.DOCUMENTO;
-");
+    $query = $conexao->prepare("SELECT * FROM (SELECT emd101.nome, crd111.documento, crd111.valor, bxd111.valor AS valor_pago, crd111.emissao, crd111.vencto, bxd111.baixa 
+        FROM emd101
+        LEFT JOIN crd111 ON emd101.cgc_cpf = crd111.cgc_cpf
+        LEFT JOIN bxd111 ON emd101.cgc_cpf = bxd111.cgc_cpf and crd111.documento = bxd111.documento
+        UNION ALL
+        SELECT emd101.nome, cxd555.documento, cxd555.valor, cxd555.valor AS valor_pago, cxd555.data AS emissao, cxd555.data AS vencto, cxd555.data AS baixa
+        FROM emd101
+        LEFT JOIN atd222 ON emd101.cgc_cpf = atd222.cnpj_cpf
+        LEFT JOIN cxd555 ON emd101.cgc_cpf = atd222.cnpj_cpf and cxd555.documento = atd222.documento)
+        ORDER BY nome;");
     $query->execute();
     $dados = $query->fetchAll(PDO::FETCH_OBJ);
 
